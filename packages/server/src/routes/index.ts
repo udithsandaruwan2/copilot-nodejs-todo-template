@@ -1,5 +1,7 @@
 import express from 'express';
 import { Task } from '../models/task';
+import { DbService } from '../services/db';
+
 
 const router = express.Router();
 
@@ -40,7 +42,7 @@ router.post('/users/:userId/tasks', async function(req, res) {
 router.get('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     // TODO: get task from database
     const task = {};
 
@@ -53,9 +55,14 @@ router.get('/tasks/:taskId', async function(req, res) {
 router.patch('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     // TODO: get existing task in database
-    const task = {};
+    const task: Task = {
+      id: '',
+      userId: '',
+      title: '',
+      completed: false
+    };
     task.completed = Boolean(req.body?.completed);
 
     // TODO: update task in database
@@ -70,7 +77,7 @@ router.patch('/tasks/:taskId', async function(req, res) {
 router.delete('/tasks/:taskId', async function(req, res) {
   try {
     const { taskId } = req.params;
-    
+
     // TODO: delete task in database
 
     res.sendStatus(204);
@@ -80,4 +87,3 @@ router.delete('/tasks/:taskId', async function(req, res) {
 });
 
 export default router;
-

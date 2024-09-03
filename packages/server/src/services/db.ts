@@ -31,7 +31,7 @@ export class DbService {
     this.container = 'tasks';
   }
 
-  async getTasks() {
+  async getTasks(p0: string) {
     const { resources } = await this.client
       .database(this.database)
       .container(this.container)
